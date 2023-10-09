@@ -11,7 +11,7 @@ class Window(Gtk.ApplicationWindow):
         Gtk.ApplicationWindow.__init__(self, *args, **kwargs)
         app = kwargs['application']
 
-        fig = Figure(figsize=(5, 4), dpi=100)
+        fig = Figure(figsize=(5, 4), dpi=100, constrained_layout=True)
         self.ax = fig.add_subplot()
         self.line = None
 
