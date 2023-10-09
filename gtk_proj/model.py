@@ -1,15 +1,14 @@
 from random import random
 
 
-class Plot():
+class PlotData:
     def __init__(self):
         self._x = []
         self._y = []
 
-    def handle_event(self):
-        if len(self._x)>0:
-            self._x.append(self._x+1)
-        else:
-            self._x.append(0)
+    def add_point(self, x, y):
+        self._x.append(x)
+        self._y.append(y)
 
-        self._y.append(random())
+    def __iter__(self):
+        return iter([self._x, self._y])
