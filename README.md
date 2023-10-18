@@ -10,4 +10,6 @@
 
 При таком способе работы установку пакетов нужно делать используя тот менеджер пакетов, который вы использовали при 
 установке pygobject. Это значит, что в windows стоит использовать pacman внутри mingw64-консоли msys ([краткая 
-инструкция про работу с пакетами](https://www.msys2.org/docs/package-management/))
+инструкция про работу с пакетами](https://www.msys2.org/docs/package-management/))  
+
+Программа использует matplotlib, поэтому его тоже надо установить (для windows - `pacman -S mingw-w64-python-matplotlib`)
