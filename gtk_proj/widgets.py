@@ -43,9 +43,9 @@ class Window(Gtk.ApplicationWindow):
 
         self.connect('close-request', self.handle_exit)
 
-    def handle_exit(self, what):
-        # print(what)
-        dialog = Confirmation()
+    def handle_exit(self, _):
+        dialog = Confirmation() # прицепил к классу метод __del__, первый объект умирает на второй
+                                # попытке выйти. Т.е. течь не должно, но чуть лишней памяти держит
         dialog.set_transient_for(self)
         dialog.show()
         dialog.connect('response', self.exit)
@@ -56,6 +56,4 @@ class Window(Gtk.ApplicationWindow):
         if response == 1:
             self.app.quit()
         widget.destroy()
-
-
 
