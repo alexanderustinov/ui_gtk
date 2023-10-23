@@ -6,6 +6,15 @@ class Notebook(Gtk.Notebook):
     pass
 
 
+class Confirmation(Gtk.MessageDialog):
+    def __init__(self):
+        Gtk.MessageDialog.__init__(self)
+        self.set_markup('<b>Вы уверены?</b>')
+        self.add_button('да', 1)
+        self.add_button('нет', 0)
+        #  'Действительно выйти?'
+
+
 class Window(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         Gtk.ApplicationWindow.__init__(self, *args, **kwargs)
@@ -27,10 +36,26 @@ class Window(Gtk.ApplicationWindow):
         notebook.append_page(view, tab_label)
         view.show()
 
-
         self.set_child(notebook)
         self.show()
 
-        app = kwargs['application']
+        self.app = kwargs['application']
+
+        self.connect('close-request', self.handle_exit)
+
+    def handle_exit(self, what):
+        # print(what)
+        dialog = Confirmation()
+        dialog.set_transient_for(self)
+        dialog.show()
+        dialog.connect('response', self.exit)
+        return True
+
+    def exit(self, widget, response):
+        # print(widget, response)
+        if response == 1:
+            self.app.quit()
+        widget.destroy()
+
 
 
