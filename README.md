@@ -24,4 +24,14 @@ python3 -m gtk_proj
 ошибку импорта gi. Самый простой способ этого избежать - настроить конфигурацию запуска: слева от 
 Run в интерфейсе, собирать по словам python, module (по запросу сниму видео-урок про это; повтор того, что было на паре) 
 
-
+### Nuitka
+Требует установки `mingw-w64-x86_64-python-nuitka` и использования
+python из msys:
+```shell
+ C:\msys64\mingw64\bin\python.exe -m nuitka gtk_proj_.py 
+--standalone --onefile --include-data-files=gtk_proj/default_config.toml=gtk_proj/de
+fault_config.toml
+```
+20231204: пока (nuitka 1.8.3-1 и nuitka factory) запускается только в присутствии
+msys в PATH (иначе не находит кусочки gtk4). Для gtk3 должно
+работать (см. https://github.com/Nuitka/Nuitka/issues/2471 )

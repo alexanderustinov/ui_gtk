@@ -1,0 +1,1 @@
+import gtk_proj.__main__
